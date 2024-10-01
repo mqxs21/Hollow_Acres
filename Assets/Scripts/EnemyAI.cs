@@ -23,6 +23,10 @@ public class EnemyAI : MonoBehaviour
         {
             agent.SetDestination(playerTransform.position);
         }
+        if (currHp<=0)
+        {
+            Die();
+        }
     }
     public void hit(int damage){
         currHp-=damage;
@@ -32,6 +36,9 @@ public class EnemyAI : MonoBehaviour
         {
             hit(10);
         }
+    }
+    void Die(){
+        Destroy(this.gameObject);
     }
    
 }
