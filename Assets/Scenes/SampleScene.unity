@@ -1239,7 +1239,7 @@ GameObject:
   - component: {fileID: 224218841}
   - component: {fileID: 224218840}
   m_Layer: 0
-  m_Name: Navmesh
+  m_Name: NavMeshSurface
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1274,7 +1274,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.16666667
   m_MinRegionArea: 2
-  m_NavMeshData: {fileID: 23800000, guid: 7974ed8377821634f9c4c720a4b02734, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 8d15e872cf039cb489c3a0e129ced270, type: 2}
   m_BuildHeightMesh: 0
 --- !u!4 &224218841
 Transform:
@@ -4340,6 +4340,11 @@ PrefabInstance:
       propertyPath: m_CullingMask.m_Bits
       value: 55
       objectReference: {fileID: 0}
+    - target: {fileID: 4459864851310106427, guid: 6bacecc4f3df9584198879c73a6b6c36,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -6357,6 +6362,7 @@ GameObject:
   - component: {fileID: 1525740987}
   - component: {fileID: 1525740986}
   - component: {fileID: 1525740985}
+  - component: {fileID: 1525740990}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -6474,6 +6480,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1525740990
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1525740984}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec5af2392ff16794490618b91665f7c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  agent: {fileID: 1525740985}
+  playerTransform: {fileID: 2059461766}
+  enemyCanMove: 1
 --- !u!1001 &1537934115
 PrefabInstance:
   m_ObjectHideFlags: 0
