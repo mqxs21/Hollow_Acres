@@ -10,7 +10,7 @@ public class EnemyAI : MonoBehaviour
     public bool enemyCanMove = true;
     public int maxHp = 100;
     public int currHp = 100;
-
+    public Animator skeleAnimator;
     void Start()
     {
         currHp = maxHp;
@@ -38,7 +38,7 @@ public class EnemyAI : MonoBehaviour
         }
     }
     void Die(){
-        Destroy(this.gameObject);
+        Destroy(this.transform.parent.gameObject);
     }
    
 }
