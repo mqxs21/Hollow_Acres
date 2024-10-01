@@ -2596,6 +2596,12 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 721558744}
   m_PrefabAsset: {fileID: 0}
+--- !u!95 &455267563 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 4972723599130171459, guid: 6e4019dcbde26c8408f888128d0a9a67,
+    type: 3}
+  m_PrefabInstance: {fileID: 721558744}
+  m_PrefabAsset: {fileID: 0}
 --- !u!195 &455267565
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -4301,7 +4307,13 @@ MonoBehaviour:
   playerTransform: {fileID: 2059461766}
   enemyCanMove: 1
   maxHp: 20
-  currHp: 100
+  sightRange: 9
+  currHp: 20
+  whatIsPlayer:
+    serializedVersion: 2
+    m_Bits: 128
+  skeleAnimator: {fileID: 455267563}
+  playerInSightRange: 0
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -5056,6 +5068,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: FirstPersonController
+      objectReference: {fileID: 0}
+    - target: {fileID: 4459864850019384750, guid: 6bacecc4f3df9584198879c73a6b6c36,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4459864851310106426, guid: 6bacecc4f3df9584198879c73a6b6c36,
         type: 3}
@@ -7244,7 +7261,13 @@ MonoBehaviour:
   playerTransform: {fileID: 2059461766}
   enemyCanMove: 1
   maxHp: 100
+  sightRange: 0
   currHp: 100
+  whatIsPlayer:
+    serializedVersion: 2
+    m_Bits: 0
+  skeleAnimator: {fileID: 0}
+  playerInSightRange: 0
 --- !u!54 &1525740991
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -9,8 +9,11 @@ public class EnemyAI : MonoBehaviour
     public Transform playerTransform;
     public bool enemyCanMove = true;
     public int maxHp = 100;
+    public float sightRange;
     public int currHp = 100;
+    public LayerMask whatIsPlayer;
     public Animator skeleAnimator;
+    public bool playerInSightRange;
     void Start()
     {
         currHp = maxHp;
@@ -19,13 +22,21 @@ public class EnemyAI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (enemyCanMove)
+
+        if (playerInSightRange)
         {
             agent.SetDestination(playerTransform.position);
         }
         if (currHp<=0)
         {
             Die();
+        }
+        playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
+        if (playerInSightRange)
+        {
+            agent.enabled = true;
+        }else{
+            agent.enabled = false;
         }
     }
     public void hit(int damage){
