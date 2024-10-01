@@ -23,7 +23,7 @@ public class PlayerAttackController : MonoBehaviour
     }
   }
   IEnumerator DelaySetToFalse(string set){
-    yield return new WaitForSeconds(0.15f);
+    yield return new WaitForSeconds(0.3f);
     pitchformAnimator.SetBool(set,false);
   }
 }

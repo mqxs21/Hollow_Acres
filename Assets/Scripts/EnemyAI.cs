@@ -27,4 +27,11 @@ public class EnemyAI : MonoBehaviour
     public void hit(int damage){
         currHp-=damage;
     }
+    void OnTriggerEnter(Collider collision){
+        if (collision.gameObject.CompareTag("AttackTrigger") && collision.gameObject.GetComponentInParent<Animator>().GetBool("isStabbing"))
+        {
+            hit(10);
+        }
+    }
+   
 }
