@@ -18,6 +18,7 @@ public class EnemyAI : MonoBehaviour
     public bool playerInAttackRange;
     public float attackRange = 2;
     public bool stillAlive = true;
+    public GameObject getHitEffect;
     void Start()
     {
         stillAlive = true;
@@ -63,6 +64,7 @@ public class EnemyAI : MonoBehaviour
     }
     public void hit(int damage){
         currHp-=damage;
+        Instantiate(getHitEffect,transform.position,Quaternion.identity);
     }
     void OnTriggerEnter(Collider collision){
         if (collision.gameObject.CompareTag("AttackTrigger") && collision.gameObject.GetComponentInParent<Animator>().GetBool("isStabbing"))
