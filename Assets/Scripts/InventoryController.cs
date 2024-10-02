@@ -58,7 +58,6 @@ public class InventoryController : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(1) && inHitbox)
         {
-            Debug.Log("Planting");
             string currentClick = "ID" + selectedIndex;
 
             foreach (Character newChar in newInventoryDict.Values)
@@ -67,6 +66,8 @@ public class InventoryController : MonoBehaviour
                 {
                     if (newChar.num >= 1)
                     {
+                        Debug.Log("Planting");
+
                         newChar.num -= 1;
             //Plant FOOD 
                     }
