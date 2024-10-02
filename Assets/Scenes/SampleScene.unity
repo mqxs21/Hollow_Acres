@@ -1444,10 +1444,15 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pepper
       objectReference: {fileID: 0}
+    - target: {fileID: 1271865576400040978, guid: 6887084a4d02b064fbd55a21a809634f,
+        type: 3}
+      propertyPath: m_TagString
+      value: Food
+      objectReference: {fileID: 0}
     - target: {fileID: 1399567718674903674, guid: 6887084a4d02b064fbd55a21a809634f,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1940281421854633640, guid: 6887084a4d02b064fbd55a21a809634f,
         type: 3}
@@ -8005,6 +8010,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Carrot_Plant
       objectReference: {fileID: 0}
+    - target: {fileID: 1000013410243764, guid: 56b36da289d9a9e4cb37c5f588e23748, type: 3}
+      propertyPath: m_TagString
+      value: Food
+      objectReference: {fileID: 0}
     - target: {fileID: 4000010095355520, guid: 56b36da289d9a9e4cb37c5f588e23748, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.795
@@ -8048,7 +8057,7 @@ PrefabInstance:
     - target: {fileID: 64000012162240616, guid: 56b36da289d9a9e4cb37c5f588e23748,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
