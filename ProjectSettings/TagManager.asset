@@ -8,6 +8,7 @@ TagManager:
   - Enemy
   - AttackTrigger
   - Food
+  - HealthRegen
   layers:
   - Default
   - TransparentFX

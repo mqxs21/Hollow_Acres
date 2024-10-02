@@ -35,6 +35,8 @@ public class HungerController : MonoBehaviour
         UpdateHungerUI();
     }
 
+
+
     void DecreaseHunger()
     {
         hungerPercentage -= hungerDecrement;

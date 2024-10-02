@@ -35,7 +35,7 @@ public class FarmingStuff : MonoBehaviour
         if (collision.gameObject.tag == "Food")
         {
             Destroy(collision.gameObject);
-            IncreaseHunger(10f);
+            IncreaseHunger(10);
             Debug.Log("Collision with Food!");
         }
     }
