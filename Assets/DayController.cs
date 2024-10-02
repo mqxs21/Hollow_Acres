@@ -27,10 +27,7 @@ public class DayController : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKey(KeyCode.F)) // USED FOR TEESTING PERPOSES ONLY TAKE OUT LATOR
-        {
-            isNight = !isNight;
-        }
+       
         seconds += Time.deltaTime;
         if (seconds >= secondsPerCycle)
         {

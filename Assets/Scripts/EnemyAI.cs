@@ -23,6 +23,7 @@ public class EnemyAI : MonoBehaviour
     {
         stillAlive = true;
         currHp = maxHp;
+        playerTransform = GameObject.Find("FirstPersonController").transform;
     }
 
     // Update is called once per frame
