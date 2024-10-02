@@ -12,7 +12,7 @@ public class FarmingStuff : MonoBehaviour
     {
         if (hungerController == null)
         {
-            hungerController = FindObjectOfType<HungerController>();
+            hungerController = FindAnyObjectByType<HungerController>();
         }
     }
     // Update is called once per frame
