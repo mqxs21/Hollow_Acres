@@ -9,6 +9,7 @@ TagManager:
   - AttackTrigger
   - Food
   - HealthRegen
+  - Hitbox
   layers:
   - Default
   - TransparentFX

@@ -7,6 +7,7 @@ public class InventoryController : MonoBehaviour
     // Use Character as the type instead of dynamic
     public Dictionary<string, Character> newInventoryDict = new Dictionary<string, Character>();
     public int selectedIndex = 1;
+    public bool inHitbox = false;
     public class Character
     {
         public string name;
@@ -34,12 +35,30 @@ public class InventoryController : MonoBehaviour
 
      
     }
+    void OnTriggerEnter(Collider collision)
+    {
+
+        if (collision.gameObject.tag == "Hitbox")
+        {
+            inHitbox = true;
+            Debug.Log("Collision with Hitbox!");
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag == "Hitbox")
+        {
+            inHitbox = false;
+            Debug.Log("Left Hitbox!");
+        }
+    }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(1))
+        if (Input.GetMouseButtonDown(1) && inHitbox)
         {
+            Debug.Log("Planting");
             string currentClick = "ID" + selectedIndex;
 
             foreach (Character newChar in newInventoryDict.Values)
