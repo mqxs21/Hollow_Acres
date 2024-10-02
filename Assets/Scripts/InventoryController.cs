@@ -48,9 +48,8 @@ public class InventoryController : MonoBehaviour
                 {
                     if (newChar.num >= 1)
                     {
-                        Debug.Log(newChar.num);
                         newChar.num -= 1;
-                        Debug.Log("Planted" + newChar.num);
+            //Plant FOOD 
                     }
                     else
                     {
