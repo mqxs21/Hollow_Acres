@@ -6,7 +6,7 @@ using UnityEngine;
 public class InventoryController : MonoBehaviour
 {
     // Use Character as the type instead of dynamic
-     [SerializeField] private GrowthController growthController;
+    public GrowthController growthController;
     public Dictionary<string, Character> newInventoryDict = new Dictionary<string, Character>();
     public int selectedIndex = 1;
     public bool inHitbox = false;
@@ -32,7 +32,8 @@ public class InventoryController : MonoBehaviour
 
     void Start()
     {
-        
+        growthController = GetComponent<GrowthController>();
+
         CreateNewCharacter("ID1", "PEPPER", 4);
         CreateNewCharacter("ID2", "TOMATO", 3);
 
