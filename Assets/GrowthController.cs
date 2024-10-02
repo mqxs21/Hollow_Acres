@@ -10,25 +10,33 @@ public class GrowthController : MonoBehaviour
     public GameObject foodToSpawn;
     public DayController dayController;
     public GameObject storeLoc;
+    public bool isPlanted;
 
     private GameObject cur;
     private bool lastNight;
 
     void Start()
     {
+        isPlanted = false;
         dayController = GameObject.Find("DayNightManager").GetComponent<DayController>();
         lastNight = dayController.isNight;
     }
 
     void Update()
     {
-        if (dayController.isNight != lastNight)
+        if (isPlanted)
+        {
+            if (dayController.isNight != lastNight)
         {
             NextStage();
             lastNight = dayController.isNight;
         }
     }
-
+        }
+        
+    public void PlantSeed(){
+        isPlanted = true;
+    }
     public void NextStage()
     {
         int random = UnityEngine.Random.Range(1, 3);
