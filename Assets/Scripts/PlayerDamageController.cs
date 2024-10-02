@@ -18,7 +18,7 @@ public class PlayerDamageController : MonoBehaviour
     {
         
     }
-    void Hit(int damage){
+    public void Hit(int damage){
         curPlayerHealth-=damage;
     }
     void HandleDeath(){
