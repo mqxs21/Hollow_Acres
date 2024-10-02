@@ -27,7 +27,7 @@ public class EnemyAI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        while(stillAlive){
+        if(stillAlive){
              if (playerInSightRange && !playerInAttackRange)
         {
             agent.enabled = true;
@@ -72,10 +72,7 @@ public class EnemyAI : MonoBehaviour
     }
 
     void Die() {
-        skeleAnimator.SetBool("isDead", true); 
-        this.gameObject.GetComponent<BoxCollider>().enabled = false;
-        agent.enabled = false; 
-        Destroy(gameObject, 3f); 
+        Destroy(this.transform.parent.gameObject);
 }
 
    
