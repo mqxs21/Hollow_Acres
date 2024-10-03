@@ -91,7 +91,7 @@ PrefabInstance:
     - target: {fileID: 6782667309670242428, guid: 6e4019dcbde26c8408f888128d0a9a67,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 43.51
+      value: 20.1
       objectReference: {fileID: 0}
     - target: {fileID: 6782667309670242428, guid: 6e4019dcbde26c8408f888128d0a9a67,
         type: 3}
@@ -211,6 +211,8 @@ MonoBehaviour:
   playerTransform: {fileID: 0}
   enemyCanMove: 1
   maxHp: 40
+  dropLoot: {fileID: 2086183014223596922, guid: fd351fc6af4ffe5499c691248cdacccf,
+    type: 3}
   sightRange: 10
   currHp: 20
   whatIsPlayer:
@@ -266,6 +268,8 @@ MonoBehaviour:
   playerTransform: {fileID: 0}
   enemyCanMove: 1
   maxHp: 100
+  dropLoot: {fileID: 2086183014223596922, guid: fd351fc6af4ffe5499c691248cdacccf,
+    type: 3}
   sightRange: 10
   currHp: 100
   whatIsPlayer:

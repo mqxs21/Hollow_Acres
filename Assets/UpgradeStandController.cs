@@ -13,7 +13,9 @@ public class UpgradeStandController : MonoBehaviour
     public TextMeshProUGUI damageText;
     public EnemyAI enemyAI;
     public int upgradeDamageAmount = 10;
+    public CurrencyController currencyController;
     public int maxHp;
+    public int costUpgrade = 10;
     void Start()
     {
         this.maxHp = enemyAI.maxHp;
@@ -47,9 +49,10 @@ public class UpgradeStandController : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
     }
     public void UpgradeDamage(){
-        if (weaponAttackDamage != maxHp && int.Parse(damageText.text) <maxHp)
+        if (weaponAttackDamage != maxHp && int.Parse(damageText.text) <maxHp && currencyController.currencyAmount>=costUpgrade)
         {
             //damageText.text = (int.Parse(damageText.text)+upgradeDamageAmount).ToString();
+            currencyController.currencyAmount-=costUpgrade;
             weaponAttackDamage+=upgradeDamageAmount;
         }
     }

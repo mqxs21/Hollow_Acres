@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class CurrencyTrigger : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+    public CurrencyController currencyController;
+    void Start(){
+        currencyController = GameObject.Find("FirstPersonController").GetComponent<CurrencyController>();
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+    void OnCollisionEnter(Collision hit){
+        if (hit.collider.gameObject.CompareTag("Player"))
+        {
+            currencyController.addCurrency(1);
+            Destroy(this.transform.parent.gameObject);
+        }
     }
 }
