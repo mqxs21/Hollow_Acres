@@ -26,6 +26,10 @@ public class GrowthController : MonoBehaviour
     {
         if (isPlanted)
         {
+            if (currentStage == "Stage0")
+            {
+                NextStage();
+            }
             if (dayController.isNight != lastNight)
         {
             NextStage();
