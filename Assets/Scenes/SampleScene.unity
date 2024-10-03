@@ -5931,7 +5931,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.6698113, g: 0.6413759, b: 0.6413759, a: 0.392}
+  m_Color: {r: 0.6698113, g: 0.6413759, b: 0.6413759, a: 0.08627451}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -7766,6 +7766,12 @@ PrefabInstance:
       propertyPath: dayController
       value: 
       objectReference: {fileID: 269263268}
+    - target: {fileID: 5475795918256467018, guid: c26cacf51e485c54b95fdbf9ad976ddf,
+        type: 3}
+      propertyPath: foodToSpawnPepper
+      value: 
+      objectReference: {fileID: 1448619151152559561, guid: fda78156585bbea4fa11d7602e5c82e9,
+        type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

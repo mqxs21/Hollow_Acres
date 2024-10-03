@@ -128,8 +128,9 @@ MonoBehaviour:
     type: 3}
   stageTwo: {fileID: 8464711216529641863, guid: 56567f8c9bc00c64b973c3e75804ebe6,
     type: 3}
-  foodToSpawn: {fileID: 1448619151152559561, guid: fda78156585bbea4fa11d7602e5c82e9,
+  foodToSpawnPepper: {fileID: 1448619151152559561, guid: fda78156585bbea4fa11d7602e5c82e9,
     type: 3}
+  foodToSpawnTom: {fileID: 0}
   dayController: {fileID: 0}
   storeLoc: {fileID: 1189401088953751435}
   isPlanted: 0

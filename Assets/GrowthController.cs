@@ -7,13 +7,15 @@ public class GrowthController : MonoBehaviour
     public string currentStage = "Stage0";
     public GameObject stageOne;
     public GameObject stageTwo;
-    public GameObject foodToSpawn;
+    public GameObject foodToSpawnPepper;
+    public GameObject foodToSpawnTom;
     public DayController dayController;
     public GameObject storeLoc;
     public bool isPlanted;
 
     private GameObject cur;
     private bool lastNight;
+    private string plantType;
 
     void Start()
     {
@@ -38,8 +40,9 @@ public class GrowthController : MonoBehaviour
     }
         }
         
-    public void PlantSeed(){
+    public void PlantSeed(string type){
         isPlanted = true;
+        plantType = type;
     }
     public void NextStage()
     {
@@ -64,10 +67,17 @@ public class GrowthController : MonoBehaviour
                 Destroy(cur);
                 Vector3 spawnFoodLoc = storeLoc.transform.position;
                 spawnFoodLoc.y += 1;
-
-                cur = Instantiate(foodToSpawn,spawnFoodLoc, Quaternion.identity);
+                if (plantType == "TOMATO")
+                {
+                    cur = Instantiate(foodToSpawnTom,spawnFoodLoc, Quaternion.identity);
+                }else{
+                    cur = Instantiate(foodToSpawnPepper,spawnFoodLoc, Quaternion.identity);
+                }
+                
                 cur.transform.parent = storeLoc.transform;
                 currentStage = "Stage0";
+                isPlanted = false;
+                plantType = "";
             }
         }
     }

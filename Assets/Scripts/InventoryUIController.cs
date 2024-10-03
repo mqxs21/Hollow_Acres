@@ -17,6 +17,7 @@ public class InventoryUIController : MonoBehaviour
 
     void Start()
     {
+        SelectPepper();
         inventoryController = FindObjectOfType<InventoryController>();
 
         if (inventoryController == null)

@@ -75,7 +75,8 @@ public class InventoryController : MonoBehaviour
                         GrowthController closestGrowthController = FindClosestGrowthController();
                         if (closestGrowthController != null)
                         {
-                            closestGrowthController.PlantSeed();
+                            closestGrowthController.PlantSeed(newChar.name);
+                            Debug.Log("planting "+newChar.name);
                         }
                         else
                         {
@@ -110,11 +111,11 @@ public class InventoryController : MonoBehaviour
 
         if (closestController != null)
         {
-            Debug.Log("Found closest GrowthController at distance: " + closestDistance);
+            //Debug.Log("Found closest GrowthController at distance: " + closestDistance);
         }
         else
         {
-            Debug.LogWarning("No GrowthController found nearby.");
+            //Debug.LogWarning("No GrowthController found nearby.");
         }
 
         return closestController;
