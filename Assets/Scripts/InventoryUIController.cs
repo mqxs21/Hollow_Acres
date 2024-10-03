@@ -1,97 +1,83 @@
-using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class InventoryUIController : MonoBehaviour
 {
-    public InventoryController inventoryController; // Reference to the InventoryController script
-    public GameObject inventoryPanel; // Panel that will display the inventory
-    public GameObject itemPrefab; // Prefab for individual inventory items (Text + Button)
+    public InventoryController inventoryController;
+    public TextMeshProUGUI tomatoText;
+    public TextMeshProUGUI pepperText;
+    public TextMeshProUGUI selectedItemText;
+    public FirstPersonController firstPersonController;
 
-    
+    public int tomatoCount;
+    public int pepperCount;
+
+    private string selectedItem;
+    public GameObject inventoryPanel;
+
     void Start()
-{
-    // Automatically find the InventoryController in the scene
-    inventoryController = FindObjectOfType<InventoryController>();
-
-    if (inventoryController == null)
     {
-        Debug.LogError("No InventoryController found in the scene!");
+        inventoryController = FindObjectOfType<InventoryController>();
+
+        if (inventoryController == null)
+        {
+            Debug.LogError("No InventoryController found in the scene!");
+        }
+
+        UpdateItemCounts();
+        UpdateUI();
     }
-
-    // Ensure the inventory panel is initially hidden
-    inventoryPanel.SetActive(false);
-}
-
 
     void Update()
     {
-        // Toggle the inventory panel visibility when pressing the 'I' key
         if (Input.GetKeyDown(KeyCode.I))
         {
+            inventoryPanel.SetActive(!inventoryPanel.activeSelf);
             if (inventoryPanel.activeSelf)
             {
-                inventoryPanel.SetActive(false);
+                firstPersonController.lockCursor = false;
+            }else{
+                 firstPersonController.lockCursor = true;
             }
-            else
-            {
-                inventoryPanel.SetActive(true);
-                UpdateInventoryUI();
-            }
+        }
+
+        UpdateItemCounts();
+        UpdateUI();
+    }
+
+    void UpdateItemCounts()
+    {
+        if (inventoryController.newInventoryDict.ContainsKey("ID1"))
+        {
+            pepperCount = inventoryController.newInventoryDict["ID1"].num;
+        }
+
+        if (inventoryController.newInventoryDict.ContainsKey("ID2"))
+        {
+            tomatoCount = inventoryController.newInventoryDict["ID2"].num;
         }
     }
 
-    // Update the inventory display in the UI
-    public void UpdateInventoryUI()
+    void UpdateUI()
     {
-        // Debugging: Log the number of items in the inventory
-        Debug.Log("Inventory contains " + inventoryController.newInventoryDict.Count + " items.");
-
-        // Clear any existing items in the panel
-        foreach (Transform child in inventoryPanel.transform)
-        {
-            Destroy(child.gameObject);
-        }
-
-        // Populate the UI with items from the inventory dictionary
-        foreach (KeyValuePair<string, InventoryController.Character> entry in inventoryController.newInventoryDict)
-        {
-            InventoryController.Character character = entry.Value;
-
-            // Debugging: Log each character as we iterate over them
-            Debug.Log("Creating UI for item: " + character.name);
-
-            // Instantiate a new UI element for each inventory item
-            GameObject item = Instantiate(itemPrefab, inventoryPanel.transform);
-
-            // Verify that the prefab has Text and Button components
-            Text itemText = item.GetComponentInChildren<Text>();
-            Button itemButton = item.GetComponentInChildren<Button>();
-
-            if (itemText == null || itemButton == null)
-            {
-                Debug.LogError("Item prefab is missing Text or Button component.");
-                continue; // Skip this item if something is wrong
-            }
-
-            // Set the text to display the character's name and number of items
-            itemText.text = character.name + " (x" + character.num + ")";
-
-            // Create a local copy of the character variable for the button listener
-            InventoryController.Character localCharacter = character;
-
-            // Optionally, add a button click event (e.g., to select the item)
-            itemButton.onClick.RemoveAllListeners(); // Clear previous listeners
-            itemButton.onClick.AddListener(() => SelectItem(localCharacter));
-        }
+        tomatoText.text = tomatoCount.ToString();
+        pepperText.text = pepperCount.ToString();
+        selectedItemText.text = "Selected: " + selectedItem;
     }
 
-
-
-    // Method to handle when an item is selected
-    public void SelectItem(InventoryController.Character character)
+    public void SelectPepper()
     {
-        Debug.Log("Selected " + character.name);
-        // Implement further actions here (e.g., equip item, use item, etc.)
+        //succulent pepper
+        selectedItem = "PEPPER";
+        inventoryController.selectedIndex = 1;  
+        Debug.Log("Pepper selected.");
+    }
+
+    public void SelectTomato()
+    {
+        //succulent el tomates
+        selectedItem = "TOMATO";
+        inventoryController.selectedIndex = 2; 
+        Debug.Log("Tomato selected.");
     }
 }

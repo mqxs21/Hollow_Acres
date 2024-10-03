@@ -204,6 +204,8 @@ public class FirstPersonController : MonoBehaviour
         if(lockCursor)
         {
             Cursor.lockState = CursorLockMode.Locked;
+        }else{
+            Cursor.lockState = CursorLockMode.None;
         }
 
         if (!isGrounded)

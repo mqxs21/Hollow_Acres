@@ -1,11 +1,14 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerDamageController : MonoBehaviour
 {
     public int curPlayerHealth;
     public int maxPlayerHealth;
+    public GameObject transOut;
     void Start()
     {
         if (maxPlayerHealth == 0)
@@ -16,7 +19,7 @@ public class PlayerDamageController : MonoBehaviour
     }
     void Update()
     {
-        
+        HandleDeath();
     }
     public void Hit(int damage){
         curPlayerHealth-=damage;
@@ -24,7 +27,13 @@ public class PlayerDamageController : MonoBehaviour
     void HandleDeath(){
         if (curPlayerHealth<=0)
         {
-            //What to do when die
+            StartCoroutine(deathDelay());
         }
+    }
+    IEnumerator deathDelay(){
+        transOut.SetActive(true);
+        yield return new WaitForSeconds(1f);
+        
+        SceneManager.LoadScene(1);
     }
 }
