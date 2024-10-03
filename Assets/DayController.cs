@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class DayController : MonoBehaviour
 {
-    public int nightNumber = 1;
+    public int dayNumber = 1;
+    public TextMeshProUGUI dayText;
     public bool isNight = false;
     private float seconds = 0;
     public float secondsPerCycle = 5;
@@ -28,6 +30,7 @@ public class DayController : MonoBehaviour
 
     void Update()
     {
+        dayText.text = dayNumber.ToString();
         if (dayNightCycleWork)
         {
              seconds += Time.deltaTime;
@@ -35,6 +38,10 @@ public class DayController : MonoBehaviour
         {
             
             seconds = 0;
+            if (isNight)
+            {
+                dayNumber++;
+            }
             isNight = !isNight; 
             UpdateCameraBackground(); 
         }

@@ -71,7 +71,7 @@ PrefabInstance:
     - target: {fileID: 5869858598394383380, guid: 6e4019dcbde26c8408f888128d0a9a67,
         type: 3}
       propertyPath: m_StoppingDistance
-      value: 1.8
+      value: 1.6
       objectReference: {fileID: 0}
     - target: {fileID: 6020583711002259615, guid: 6e4019dcbde26c8408f888128d0a9a67,
         type: 3}
@@ -156,12 +156,12 @@ PrefabInstance:
     - target: {fileID: 8090847183242814932, guid: 6e4019dcbde26c8408f888128d0a9a67,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.379
+      value: 0.334
       objectReference: {fileID: 0}
     - target: {fileID: 8090847183242814932, guid: 6e4019dcbde26c8408f888128d0a9a67,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.016
+      value: -0.014
       objectReference: {fileID: 0}
     - target: {fileID: 8172442304542317006, guid: 6e4019dcbde26c8408f888128d0a9a67,
         type: 3}
@@ -210,7 +210,7 @@ MonoBehaviour:
   agent: {fileID: 2335027903159439772}
   playerTransform: {fileID: 0}
   enemyCanMove: 1
-  maxHp: 20
+  maxHp: 40
   sightRange: 10
   currHp: 20
   whatIsPlayer:
@@ -219,13 +219,14 @@ MonoBehaviour:
   skeleAnimator: {fileID: 3751756936962065867}
   playerInSightRange: 0
   playerInAttackRange: 0
-  attackRange: 2
+  attackRange: 1.4
   stillAlive: 1
   getHitEffect: {fileID: 8202473910614772264, guid: 5f78e0ad67852cb42a2d9ff23fba3717,
     type: 3}
   rotationSpeed: 5
   boxCollider: {fileID: 0}
   upgradeStandController: {fileID: 0}
+  CanTakeDamage: 1
 --- !u!136 &7400342298937504215
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -273,13 +274,14 @@ MonoBehaviour:
   skeleAnimator: {fileID: 3751756936962065867}
   playerInSightRange: 0
   playerInAttackRange: 0
-  attackRange: 2
+  attackRange: 1.6
   stillAlive: 1
   getHitEffect: {fileID: 8202473910614772264, guid: 5f78e0ad67852cb42a2d9ff23fba3717,
     type: 3}
   rotationSpeed: 5
   boxCollider: {fileID: 0}
   upgradeStandController: {fileID: 0}
+  CanTakeDamage: 1
 --- !u!136 &514899169222688985
 CapsuleCollider:
   m_ObjectHideFlags: 0
