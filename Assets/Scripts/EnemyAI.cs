@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.Animations;
 
 public class EnemyAI : MonoBehaviour
 {
@@ -19,64 +18,82 @@ public class EnemyAI : MonoBehaviour
     public float attackRange = 2;
     public bool stillAlive = true;
     public GameObject getHitEffect;
+    public float rotationSpeed = 5f; 
+    public BoxCollider boxCollider;
+
     void Start()
     {
         stillAlive = true;
         currHp = maxHp;
         playerTransform = GameObject.Find("FirstPersonController").transform;
+        boxCollider = GetComponent<BoxCollider>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if(stillAlive){
-             if (playerInSightRange && !playerInAttackRange)
+        if (stillAlive)
         {
-            agent.enabled = true;
-            agent.SetDestination(playerTransform.position);
-            Debug.Log("in sight range");
-            skeleAnimator.SetBool("isWalking",true);
-            skeleAnimator.SetBool("isAttacking",false);
-            
-        }else if (playerInAttackRange)
-        {
-            Debug.Log("in attack range");
-            agent.SetDestination(transform.position);
-            skeleAnimator.SetBool("isAttacking",true);
-            skeleAnimator.SetBool("isWalking",false);
-        }else{
-            agent.enabled = false;
-            skeleAnimator.SetBool("isAttacking",false);
-            skeleAnimator.SetBool("isWalking",false);
+            playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
+            playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
+
+            if (playerInSightRange && !playerInAttackRange)
+            {
+                agent.enabled = true;
+                agent.SetDestination(playerTransform.position);
+                skeleAnimator.SetBool("isWalking", true);
+                skeleAnimator.SetBool("isAttacking", false);
+            }
+            else if (playerInAttackRange)
+            {
+                agent.SetDestination(transform.position);
+                LookAtPlayerOnYAxis();
+                skeleAnimator.SetBool("isAttacking", true);
+                skeleAnimator.SetBool("isWalking", false);
+         
+            }
+            else
+            {
+                agent.enabled = false;
+                skeleAnimator.SetBool("isAttacking", false);
+                skeleAnimator.SetBool("isWalking", false);
+            }
         }
-        
-        }
-       
-        if (currHp<=0)
+
+        if (currHp <= 0)
         {
             stillAlive = false;
-            skeleAnimator.SetBool("isAttacking",false);
-            skeleAnimator.SetBool("isWalking",false);
+            skeleAnimator.SetBool("isAttacking", false);
+            skeleAnimator.SetBool("isWalking", false);
+            Debug.Log("die");
             Die();
         }
-        playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
-        playerInAttackRange = Physics.CheckSphere(transform.position,attackRange,whatIsPlayer);
+    }
 
+      private void LookAtPlayerOnYAxis()
+    {
+        Vector3 direction = (playerTransform.position - transform.position).normalized;
+        direction.y = 0; // Keep only the horizontal direction
+        Quaternion lookRotation = Quaternion.LookRotation(direction);
+        transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5f);
     }
-    public void hit(int damage){
-        currHp-=damage;
-        Instantiate(getHitEffect,transform.position,Quaternion.identity);
+
+
+    public void hit(int damage)
+    {
+        currHp -= damage;
+        Instantiate(getHitEffect, transform.position, Quaternion.identity);
     }
-    void OnTriggerEnter(Collider collision){
+
+    void OnTriggerEnter(Collider collision)
+    {
         if (collision.gameObject.CompareTag("AttackTrigger") && collision.gameObject.GetComponentInParent<Animator>().GetBool("isStabbing"))
         {
             hit(10);
         }
     }
 
-    void Die() {
-        Destroy(this.transform.parent.gameObject);
-}
-
-   
+    void Die() 
+    {
+        Destroy(this.gameObject);
+    }
 }

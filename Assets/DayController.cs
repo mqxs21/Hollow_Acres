@@ -37,14 +37,7 @@ public class DayController : MonoBehaviour
             UpdateCameraBackground(); 
         }
 
-        if (isNight)
-        {
-            Debug.Log("It is night time.");
-        }
-        else
-        {
-            Debug.Log("It is daytime.");
-        }
+        
     }
     void UpdateCameraBackground()
     {
