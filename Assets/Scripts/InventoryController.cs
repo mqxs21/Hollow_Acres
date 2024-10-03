@@ -5,11 +5,11 @@ using UnityEngine;
 
 public class InventoryController : MonoBehaviour
 {
-    // Use Character as the type instead of dynamic
-    public GrowthController growthController;
     public Dictionary<string, Character> newInventoryDict = new Dictionary<string, Character>();
     public int selectedIndex = 1;
     public bool inHitbox = false;
+    public float searchRadius = 10f; // Radius within which to search for GrowthController
+
     public class Character
     {
         public string name;
@@ -32,22 +32,19 @@ public class InventoryController : MonoBehaviour
 
     void Start()
     {
-        growthController = GetComponent<GrowthController>();
-
         CreateNewCharacter("ID1", "PEPPER", 4);
         CreateNewCharacter("ID2", "TOMATO", 3);
-
-     
     }
+
     void OnTriggerEnter(Collider collision)
     {
-
         if (collision.gameObject.tag == "Hitbox")
         {
             inHitbox = true;
             Debug.Log("Collision with Hitbox!");
         }
     }
+
     private void OnTriggerExit(Collider other)
     {
         if (other.gameObject.tag == "Hitbox")
@@ -73,16 +70,55 @@ public class InventoryController : MonoBehaviour
                         Debug.Log("Planting");
 
                         newChar.num -= 1;
-                        growthController.PlantSeed();
-            //Plant FOOD 
+
+                        // Find the closest GrowthController
+                        GrowthController closestGrowthController = FindClosestGrowthController();
+                        if (closestGrowthController != null)
+                        {
+                            closestGrowthController.PlantSeed();
+                        }
+                        else
+                        {
+                            Debug.LogWarning("No GrowthController found nearby.");
+                        }
                     }
                     else
                     {
                         Debug.Log("Not Enough");
                     }
-                    
                 }
             }
         }
     }
+
+    // Find the closest GrowthController within a certain radius
+    GrowthController FindClosestGrowthController()
+    {
+        GrowthController[] allGrowthControllers = FindObjectsByType<GrowthController>(FindObjectsSortMode.None);
+        GrowthController closestController = null;
+        float closestDistance = Mathf.Infinity;
+
+        foreach (GrowthController controller in allGrowthControllers)
+        {
+            float distanceToController = Vector3.Distance(transform.position, controller.transform.position);
+            if (distanceToController < closestDistance)
+            {
+                closestController = controller;
+                closestDistance = distanceToController;
+            }
+        }
+
+        if (closestController != null)
+        {
+            Debug.Log("Found closest GrowthController at distance: " + closestDistance);
+        }
+        else
+        {
+            Debug.LogWarning("No GrowthController found nearby.");
+        }
+
+        return closestController;
+    }
+
+
 }
