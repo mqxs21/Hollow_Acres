@@ -201,6 +201,11 @@ public class FirstPersonController : MonoBehaviour
 
     private void Update()
     {
+        if(lockCursor)
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+        }
+
         if (!isGrounded)
         {
             rb.AddForce(0,-1,0);

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using NUnit.Framework.Constraints;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -20,9 +21,12 @@ public class EnemyAI : MonoBehaviour
     public GameObject getHitEffect;
     public float rotationSpeed = 5f; 
     public BoxCollider boxCollider;
+    public UpgradeStandController upgradeStandController;
+    public bool CanTakeDamage = true;
 
     void Start()
     {
+        upgradeStandController = GameObject.Find("UpgradeStand").GetComponent<UpgradeStandController>();
         stillAlive = true;
         currHp = maxHp;
         playerTransform = GameObject.Find("FirstPersonController").transform;
@@ -31,7 +35,7 @@ public class EnemyAI : MonoBehaviour
 
     void Update()
     {
-        if (stillAlive)
+        if (stillAlive && upgradeStandController.enemyCanGo)
         {
             playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
             playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
@@ -86,14 +90,20 @@ public class EnemyAI : MonoBehaviour
 
     void OnTriggerEnter(Collider collision)
     {
-        if (collision.gameObject.CompareTag("AttackTrigger") && collision.gameObject.GetComponentInParent<Animator>().GetBool("isStabbing"))
+        if (collision.gameObject.CompareTag("AttackTrigger") && collision.gameObject.GetComponentInParent<Animator>().GetBool("isStabbing") && CanTakeDamage)
         {
-            hit(10);
+            hit(upgradeStandController.weaponAttackDamage);
+            CanTakeDamage = false;
+            StartCoroutine(damageDelay());
         }
     }
 
     void Die() 
     {
         Destroy(this.gameObject);
+    }
+    IEnumerator damageDelay(){
+        yield return new WaitForSeconds(0.2f);
+        CanTakeDamage = true;
     }
 }

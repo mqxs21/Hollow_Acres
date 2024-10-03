@@ -13,10 +13,11 @@ public class DayController : MonoBehaviour
     public Color dayColor;
     public Color nightColor = Color.black;
     public GrowthController growthController;
+    public bool dayNightCycleWork;
 
     void Start()
     {
-        
+        dayNightCycleWork = true;
         if (mainCamera == null)
         {
             mainCamera = Camera.main;
@@ -27,8 +28,9 @@ public class DayController : MonoBehaviour
 
     void Update()
     {
-       
-        seconds += Time.deltaTime;
+        if (dayNightCycleWork)
+        {
+             seconds += Time.deltaTime;
         if (seconds >= secondsPerCycle)
         {
             
@@ -36,6 +38,9 @@ public class DayController : MonoBehaviour
             isNight = !isNight; 
             UpdateCameraBackground(); 
         }
+        }
+       
+       
 
         
     }
