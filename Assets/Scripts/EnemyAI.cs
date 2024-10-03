@@ -10,6 +10,7 @@ public class EnemyAI : MonoBehaviour
     public Transform playerTransform;
     public bool enemyCanMove = true;
     public int maxHp = 100;
+    public GameObject dropLoot;
     public float sightRange;
     public int currHp = 100;
     public LayerMask whatIsPlayer;
@@ -100,6 +101,7 @@ public class EnemyAI : MonoBehaviour
 
     void Die() 
     {
+        Instantiate(dropLoot,transform.position,Quaternion.identity);
         Destroy(this.gameObject);
     }
     IEnumerator damageDelay(){
