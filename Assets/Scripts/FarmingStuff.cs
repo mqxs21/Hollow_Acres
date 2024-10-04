@@ -8,8 +8,10 @@ public class FarmingStuff : MonoBehaviour
   //  public GameObject thePitchfork;
    
     // Start is called before the first frame update
+    private PlayerDamageController playerDamageController;
     void Start()
     {
+        playerDamageController = GameObject.Find("FirstPersonController").GetComponent<PlayerDamageController>();
         if (hungerController == null)
         {
             hungerController = FindAnyObjectByType<HungerController>();
@@ -35,8 +37,14 @@ public class FarmingStuff : MonoBehaviour
         if (collision.gameObject.tag == "Food")
         {
             Destroy(collision.gameObject);
-            IncreaseHunger(10);
-            Debug.Log("Collision with Food!");
+                IncreaseHunger(10);
+                Debug.Log("Collision with Food!");
+            
+            
+        }else if (collision.gameObject.tag == "FoodTom"){
+            Destroy(collision.gameObject);
+                IncreaseHunger(5);
+                playerDamageController.curPlayerHealth+=10;
         }
     }
 }

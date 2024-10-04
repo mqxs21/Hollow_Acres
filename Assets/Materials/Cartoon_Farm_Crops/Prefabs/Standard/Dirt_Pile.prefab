@@ -130,7 +130,8 @@ MonoBehaviour:
     type: 3}
   foodToSpawnPepper: {fileID: 1448619151152559561, guid: fda78156585bbea4fa11d7602e5c82e9,
     type: 3}
-  foodToSpawnTom: {fileID: 0}
+  foodToSpawnTom: {fileID: 5842407435834065276, guid: e9c2b5a361ae8aa41bb3351ffbd63764,
+    type: 3}
   dayController: {fileID: 0}
   storeLoc: {fileID: 1189401088953751435}
   isPlanted: 0
