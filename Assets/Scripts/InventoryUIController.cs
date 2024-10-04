@@ -63,7 +63,7 @@ public class InventoryUIController : MonoBehaviour
     {
         tomatoText.text = tomatoCount.ToString();
         pepperText.text = pepperCount.ToString();
-        selectedItemText.text = "Selected: " + selectedItem;
+        selectedItemText.text = "Equiped: " + selectedItem;
     }
 
     public void SelectPepper()

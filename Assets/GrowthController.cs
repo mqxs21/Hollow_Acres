@@ -16,6 +16,7 @@ public class GrowthController : MonoBehaviour
     private GameObject cur;
     private bool lastNight;
     private string plantType;
+    public GameObject prompt;
 
     void Start()
     {
