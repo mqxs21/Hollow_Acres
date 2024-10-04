@@ -11,7 +11,7 @@ public class InventoryUIController : MonoBehaviour
 
     public int tomatoCount;
     public int pepperCount;
-
+    
     private string selectedItem;
     public GameObject inventoryPanel;
 

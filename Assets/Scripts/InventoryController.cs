@@ -24,10 +24,51 @@ public class InventoryController : MonoBehaviour
         }
     }
 
+    // Create properties for Tomato and Pepper amounts to be accessed publicly
+    public int PepperAmount
+    {
+        get { return GetCharacterAmount("PEPPER"); }
+        set { UpdateCharacterAmount("PEPPER", value); }
+    }
+
+    public int TomatoAmount
+    {
+        get { return GetCharacterAmount("TOMATO"); }
+        set { UpdateCharacterAmount("TOMATO", value); }
+    }
+
+    // Method to create a new character and add to dictionary
     public void CreateNewCharacter(string ID, string n, int nu)
     {
         Character newCharacter = new Character(ID, n, nu);
         newInventoryDict.Add(ID, newCharacter);
+    }
+
+    // Method to get the amount of a character by name
+    private int GetCharacterAmount(string characterName)
+    {
+        foreach (Character character in newInventoryDict.Values)
+        {
+            if (character.name == characterName)
+            {
+                return character.num;
+            }
+        }
+        return 0;
+    }
+
+    // mathod to update the amount of a character by name
+    private void UpdateCharacterAmount(string characterName, int newAmount)
+    {
+        foreach (Character character in newInventoryDict.Values)
+        {
+            if (character.name == characterName)
+            {
+                character.num = newAmount;
+                Debug.Log($"{characterName} amount updated to {newAmount}");
+                return;
+            }
+        }
     }
 
     void Start()
@@ -76,7 +117,7 @@ public class InventoryController : MonoBehaviour
                         if (closestGrowthController != null)
                         {
                             closestGrowthController.PlantSeed(newChar.name);
-                            Debug.Log("planting "+newChar.name);
+                            Debug.Log("planting " + newChar.name);
                         }
                         else
                         {
@@ -111,15 +152,13 @@ public class InventoryController : MonoBehaviour
 
         if (closestController != null)
         {
-            //Debug.Log("Found closest GrowthController at distance: " + closestDistance);
+            // Debug.Log("Found closest GrowthController at distance: " + closestDistance);
         }
         else
         {
-            //Debug.LogWarning("No GrowthController found nearby.");
+            // Debug.LogWarning("No GrowthController found nearby.");
         }
 
         return closestController;
     }
-
-
 }

@@ -16,14 +16,22 @@ public class UpgradeStandController : MonoBehaviour
     public CurrencyController currencyController;
     public int maxHp;
     public int costUpgrade = 10;
+    public InventoryController inventoryController;
+    public int TomatoCost = 4;
+    public int PepperCost = 3;
+    public TextMeshProUGUI tomatoTextAmount;
+    public TextMeshProUGUI pepperTextAmount;
     void Start()
     {
         this.maxHp = enemyAI.maxHp;
+        inventoryController = FindObjectOfType<InventoryController>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        pepperTextAmount.text = "Current amount: " + (inventoryController.PepperAmount).ToString();
+        tomatoTextAmount.text = "Current amount: " + (inventoryController.TomatoAmount).ToString();
         if (weaponAttackDamage != maxHp && int.Parse(damageText.text) <maxHp)
         {
             damageText.text = weaponAttackDamage.ToString();
@@ -54,6 +62,20 @@ public class UpgradeStandController : MonoBehaviour
             //damageText.text = (int.Parse(damageText.text)+upgradeDamageAmount).ToString();
             currencyController.currencyAmount-=costUpgrade;
             weaponAttackDamage+=upgradeDamageAmount;
+        }
+    }
+    public void BuyTomatoSeed(){
+        if (currencyController.currencyAmount >= TomatoCost)
+        {
+            currencyController.currencyAmount -= TomatoCost;
+            inventoryController.TomatoAmount ++;
+        }
+    }
+    public void BuyPepperSeed(){
+        if (currencyController.currencyAmount >= PepperCost)
+        {
+            currencyController.currencyAmount -= PepperCost;
+            inventoryController.PepperAmount ++;
         }
     }
 }
