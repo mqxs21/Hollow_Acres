@@ -11,6 +11,7 @@ TagManager:
   - HealthRegen
   - Hitbox
   - FoodTom
+  - Dirt
   layers:
   - Default
   - TransparentFX

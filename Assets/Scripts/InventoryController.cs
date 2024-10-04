@@ -82,7 +82,7 @@ public class InventoryController : MonoBehaviour
         if (collision.gameObject.tag == "Hitbox")
         {
             inHitbox = true;
-            Debug.Log("Collision with Hitbox!");
+          
         }
     }
 
@@ -91,13 +91,17 @@ public class InventoryController : MonoBehaviour
         if (other.gameObject.tag == "Hitbox")
         {
             inHitbox = false;
-            Debug.Log("Left Hitbox!");
+            
         }
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (inHitbox)
+        {
+            
+        }
         if (Input.GetMouseButtonDown(1) && inHitbox)
         {
             string currentClick = "ID" + selectedIndex;
