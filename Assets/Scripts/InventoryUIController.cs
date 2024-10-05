@@ -11,7 +11,7 @@ public class InventoryUIController : MonoBehaviour
 
     public int tomatoCount;
     public int pepperCount;
-    
+    public AudioSource invenSound;
     private string selectedItem;
     public GameObject inventoryPanel;
 
@@ -33,6 +33,7 @@ public class InventoryUIController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.I))
         {
+            invenSound.Play();
             inventoryPanel.SetActive(!inventoryPanel.activeSelf);
             if (inventoryPanel.activeSelf)
             {
@@ -44,6 +45,11 @@ public class InventoryUIController : MonoBehaviour
 
         UpdateItemCounts();
         UpdateUI();
+    }
+    public void CloseInventory(){
+        invenSound.Play();
+        inventoryPanel.SetActive(false);
+        firstPersonController.lockCursor=true;
     }
 
     void UpdateItemCounts()

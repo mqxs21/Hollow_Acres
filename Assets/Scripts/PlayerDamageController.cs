@@ -10,6 +10,9 @@ public class PlayerDamageController : MonoBehaviour
     public Animator getHitAnimatorScreenFlash;
     public int maxPlayerHealth;
     public GameObject transOut;
+    public AudioSource getHitAudio;
+    public AudioSource walkingAudio;
+    public FirstPersonController firstPersonController;
     void Start()
     {
         if (maxPlayerHealth == 0)
@@ -20,9 +23,15 @@ public class PlayerDamageController : MonoBehaviour
     }
     void Update()
     {
+        if (firstPersonController.enabled && !firstPersonController.isWalking)
+        {
+            walkingAudio.Play();
+            Debug.Log("play walking sound");
+        }
         HandleDeath();
     }
     public void Hit(int damage){
+        getHitAudio.Play();
         curPlayerHealth-=damage;
         getHitAnimatorScreenFlash.SetBool("isHit",true);
         StartCoroutine(screenFlashDelay());
