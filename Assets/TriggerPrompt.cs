@@ -23,6 +23,10 @@ public class TriggerPrompt : MonoBehaviour
         {
             inHitbox = true;
         }
+        if (hit.gameObject.CompareTag("Enemy"))
+        {
+            Debug.Log("enemy");
+        }
     }
 
     void OnTriggerExit(Collider other)
