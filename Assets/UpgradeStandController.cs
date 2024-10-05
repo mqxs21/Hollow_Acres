@@ -21,6 +21,7 @@ public class UpgradeStandController : MonoBehaviour
     public int PepperCost = 3;
     public TextMeshProUGUI tomatoTextAmount;
     public TextMeshProUGUI pepperTextAmount;
+    public bool menuOpened = false;
     void Start()
     {
         this.maxHp = enemyAI.maxHp;
@@ -40,6 +41,7 @@ public class UpgradeStandController : MonoBehaviour
         }
     }
     public void OpenUpMenu(){
+        menuOpened = true;
         upgradeAnimator.SetBool("PopUp",true);
         enemyCanGo = false;
         dayController.dayNightCycleWork = false;
@@ -49,6 +51,7 @@ public class UpgradeStandController : MonoBehaviour
 
     }
     public void CloseMenu(){
+        menuOpened = false;
         upgradeAnimator.SetBool("PopUp",false);
         firstPersonController.enabled = true;
         enemyCanGo = true;

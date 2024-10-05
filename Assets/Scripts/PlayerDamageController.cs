@@ -12,6 +12,9 @@ public class PlayerDamageController : MonoBehaviour
     public GameObject transOut;
     public AudioSource getHitAudio;
     public AudioSource walkingAudio;
+    public AudioSource runningAudio;
+    public UpgradeStandController upgradeStandController;
+    
     public FirstPersonController firstPersonController;
     void Start()
     {
@@ -27,6 +30,16 @@ public class PlayerDamageController : MonoBehaviour
         {
             walkingAudio.Play();
             Debug.Log("play walking sound");
+        }
+        if (firstPersonController.enabled && !firstPersonController.isSprinting )
+        {
+            runningAudio.Play();
+            Debug.Log("playing running sound");
+        }
+        if (upgradeStandController.menuOpened)
+        {
+            walkingAudio.Stop();
+            runningAudio.Stop();
         }
         HandleDeath();
     }

@@ -10,12 +10,15 @@ public class DayController : MonoBehaviour
     public bool isNight = false;
     private float seconds = 0;
     public float secondsPerCycle = 5;
+    public float dayNightTransitionSmoothness = 2;
 
     public Camera mainCamera; 
     public Color dayColor;
     public Color nightColor = Color.black;
     public GrowthController growthController;
     public bool dayNightCycleWork;
+
+    private float transitionProgress = 0;
 
     void Start()
     {
@@ -33,29 +36,37 @@ public class DayController : MonoBehaviour
         dayText.text = dayNumber.ToString();
         if (dayNightCycleWork)
         {
-             seconds += Time.deltaTime;
-        if (seconds >= secondsPerCycle)
-        {
-            
-            seconds = 0;
-            if (isNight)
+            seconds += Time.deltaTime;
+            if (seconds >= secondsPerCycle)
             {
-                dayNumber++;
+                seconds = 0;
+                isNight = !isNight;
+                if (!isNight)
+                {
+                    dayNumber++;
+                }
+                transitionProgress = 0; // resets transition progress
             }
-            isNight = !isNight; 
-            UpdateCameraBackground(); 
         }
-        }
-       
-       
 
-        
+        UpdateCameraBackground();
     }
+
     void UpdateCameraBackground()
     {
         if (mainCamera != null)
         {
-            mainCamera.backgroundColor = isNight ? nightColor : dayColor;
+            Color targetColor = isNight ? nightColor : dayColor;
+
+            if (transitionProgress < 1)
+            {
+                mainCamera.backgroundColor = Color.Lerp(mainCamera.backgroundColor, targetColor, Time.deltaTime * dayNightTransitionSmoothness);
+                transitionProgress += Time.deltaTime * dayNightTransitionSmoothness;
+            }
+            else
+            {
+                mainCamera.backgroundColor = targetColor;
+            }
         }
     }
 }
