@@ -8,11 +8,12 @@ public class PlayerAttackController : MonoBehaviour
   [SerializeField] GameObject pitchfork;
   [SerializeField] Animator pitchformAnimator;
   public AudioSource stabSoundEffect;
+  public FirstPersonController firstPersonController;
   void Start(){
     stabSoundEffect = GetComponent<AudioSource>();
   }
   void Update(){
-    if (!pitchformAnimator.GetBool("isStabbing") && !pitchformAnimator.GetBool("isHarv") && Input.GetMouseButtonDown(0))
+    if (!pitchformAnimator.GetBool("isStabbing") && !pitchformAnimator.GetBool("isHarv") && Input.GetMouseButtonDown(0)&& firstPersonController.enabled)
     {
         pitchformAnimator.SetBool("isStabbing",true);
         stabSoundEffect.Play();
