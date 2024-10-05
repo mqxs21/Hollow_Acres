@@ -217,7 +217,7 @@ MonoBehaviour:
   maxHp: 40
   dropLoot: {fileID: 2086183014223596922, guid: fd351fc6af4ffe5499c691248cdacccf,
     type: 3}
-  sightRange: 10
+  sightRange: 20
   currHp: 20
   whatIsPlayer:
     serializedVersion: 2
