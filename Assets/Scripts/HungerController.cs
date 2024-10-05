@@ -17,6 +17,7 @@ public class HungerController : MonoBehaviour
     public float timeInterval = 5f;
 
     private float originalWidth;
+    public GameObject warningPanel;
     private float originalWidthHealth;
 
     void Start()
@@ -34,6 +35,17 @@ void Update()
     {
         seconds = 0;
         DecreaseHunger();
+    }
+    if (hungerPercentage<=0)
+    {
+        warningPanel.SetActive(true);
+        if (seconds%5==0)
+        {
+            playerDamageController.curPlayerHealth-=20;
+        }
+        
+    }else{
+        warningPanel.SetActive(false);
     }
 
     UpdateHungerUI();

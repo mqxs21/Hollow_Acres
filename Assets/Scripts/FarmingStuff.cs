@@ -43,7 +43,6 @@ public class FarmingStuff : MonoBehaviour
             
         }else if (collision.gameObject.tag == "FoodTom"){
             Destroy(collision.gameObject);
-                IncreaseHunger(5);
                 playerDamageController.curPlayerHealth+=10;
         }
     }

@@ -16,7 +16,10 @@ public class DayController : MonoBehaviour
     public Color dayColor;
     public Color nightColor = Color.black;
     public GrowthController growthController;
+    public AudioSource dayMusic;
+    public AudioSource nightMusic;
     public bool dayNightCycleWork;
+    public float musicTransitionSmoothness = 1; // Speed for music transitions
 
     private float transitionProgress = 0;
 
@@ -29,6 +32,22 @@ public class DayController : MonoBehaviour
         }
         dayColor = mainCamera.backgroundColor;
         UpdateCameraBackground();
+        
+       
+        if (isNight)
+        {
+            nightMusic.volume = 0.5f;
+            dayMusic.volume = 0;
+        }
+        else
+        {
+            dayMusic.volume = 0.5f;
+            nightMusic.volume = 0;
+        }
+
+       
+        dayMusic.Play();
+        nightMusic.Play();
     }
 
     void Update()
@@ -45,11 +64,12 @@ public class DayController : MonoBehaviour
                 {
                     dayNumber++;
                 }
-                transitionProgress = 0; // resets transition progress
+                transitionProgress = 0; 
             }
         }
 
         UpdateCameraBackground();
+        UpdateMusicVolume();
     }
 
     void UpdateCameraBackground()
@@ -66,6 +86,33 @@ public class DayController : MonoBehaviour
             else
             {
                 mainCamera.backgroundColor = targetColor;
+            }
+        }
+    }
+
+    void UpdateMusicVolume()
+    {
+        if (isNight)
+        {
+
+            if (nightMusic.volume < 0.5)
+            {
+                nightMusic.volume = Mathf.Lerp(nightMusic.volume, 0.5f, Time.deltaTime * musicTransitionSmoothness);
+            }
+            if (dayMusic.volume > 0)
+            {
+                dayMusic.volume = Mathf.Lerp(dayMusic.volume, 0, Time.deltaTime * musicTransitionSmoothness);
+            }
+        }
+        else
+        {
+            if (dayMusic.volume < 0.5)
+            {
+                dayMusic.volume = Mathf.Lerp(dayMusic.volume, 0.5f, Time.deltaTime * musicTransitionSmoothness);
+            }
+            if (nightMusic.volume > 0)
+            {
+                nightMusic.volume = Mathf.Lerp(nightMusic.volume, 0, Time.deltaTime * musicTransitionSmoothness);
             }
         }
     }
