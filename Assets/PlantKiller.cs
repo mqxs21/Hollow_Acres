@@ -13,15 +13,18 @@ public class PlantKiller : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        Debug.Log("script running");
     }
 
-    private void OnCollisionEnter(Collision collision)
+    void OnCollisionEnter(Collision collision)
     {
+        Debug.Log("Collision detected with: " + collision.gameObject.name);
+
         if (collision.gameObject.tag == "Hitbox")
         {
-            //I got to kill the plant
             Debug.Log("Touched the plant");
+            // Plant killing logic here
         }
     }
+
 }
