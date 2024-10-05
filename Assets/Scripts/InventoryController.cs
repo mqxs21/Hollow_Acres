@@ -36,15 +36,11 @@ public class InventoryController : MonoBehaviour
         get { return GetCharacterAmount("TOMATO"); }
         set { UpdateCharacterAmount("TOMATO", value); }
     }
-
-    // Method to create a new character and add to dictionary
     public void CreateNewCharacter(string ID, string n, int nu)
     {
         Character newCharacter = new Character(ID, n, nu);
         newInventoryDict.Add(ID, newCharacter);
     }
-
-    // Method to get the amount of a character by name
     private int GetCharacterAmount(string characterName)
     {
         foreach (Character character in newInventoryDict.Values)
@@ -56,8 +52,6 @@ public class InventoryController : MonoBehaviour
         }
         return 0;
     }
-
-    // mathod to update the amount of a character by name
     private void UpdateCharacterAmount(string characterName, int newAmount)
     {
         foreach (Character character in newInventoryDict.Values)
@@ -94,8 +88,6 @@ public class InventoryController : MonoBehaviour
             
         }
     }
-
-    // Update is called once per frame
     void Update()
     {
         if (inHitbox)
@@ -116,7 +108,6 @@ public class InventoryController : MonoBehaviour
 
                         newChar.num -= 1;
 
-                        // Find the closest GrowthController
                         GrowthController closestGrowthController = FindClosestGrowthController();
                         if (closestGrowthController != null)
                         {
@@ -136,8 +127,6 @@ public class InventoryController : MonoBehaviour
             }
         }
     }
-
-    // Find the closest GrowthController within a certain radius
     GrowthController FindClosestGrowthController()
     {
         GrowthController[] allGrowthControllers = FindObjectsByType<GrowthController>(FindObjectsSortMode.None);

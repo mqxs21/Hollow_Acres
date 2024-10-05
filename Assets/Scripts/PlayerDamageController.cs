@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class PlayerDamageController : MonoBehaviour
 {
     public int curPlayerHealth;
+    public Animator getHitAnimatorScreenFlash;
     public int maxPlayerHealth;
     public GameObject transOut;
     void Start()
@@ -23,6 +24,8 @@ public class PlayerDamageController : MonoBehaviour
     }
     public void Hit(int damage){
         curPlayerHealth-=damage;
+        getHitAnimatorScreenFlash.SetBool("isHit",true);
+        StartCoroutine(screenFlashDelay());
     }
     void HandleDeath(){
         if (curPlayerHealth<=0)
@@ -35,5 +38,9 @@ public class PlayerDamageController : MonoBehaviour
         yield return new WaitForSeconds(1f);
         
         SceneManager.LoadScene(1);
+    }
+    IEnumerator screenFlashDelay(){
+        yield return new WaitForSeconds(0.1f);
+        getHitAnimatorScreenFlash.SetBool("isHit",false);
     }
 }

@@ -38,7 +38,7 @@ public class TriggerPrompt : MonoBehaviour
 
     void Update()
     {
-        if (inHitbox)
+        if (inHitbox && !GetComponentInParent<GrowthController>().isPlanted)
         {
 
             string currentSelectedID = "ID" + inventoryController.selectedIndex;

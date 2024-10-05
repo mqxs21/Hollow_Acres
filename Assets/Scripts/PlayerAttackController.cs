@@ -7,20 +7,18 @@ public class PlayerAttackController : MonoBehaviour
 {
   [SerializeField] GameObject pitchfork;
   [SerializeField] Animator pitchformAnimator;
+  public AudioSource stabSoundEffect;
   void Start(){
-
+    stabSoundEffect = GetComponent<AudioSource>();
   }
   void Update(){
     if (!pitchformAnimator.GetBool("isStabbing") && !pitchformAnimator.GetBool("isHarv") && Input.GetMouseButtonDown(0))
     {
         pitchformAnimator.SetBool("isStabbing",true);
+        stabSoundEffect.Play();
         StartCoroutine(DelaySetToFalse("isStabbing"));
     }
-    if (!pitchformAnimator.GetBool("isStabbing") && !pitchformAnimator.GetBool("isHarv") && Input.GetMouseButtonDown(1))
-    {
-        pitchformAnimator.SetBool("isHarv",true);
-        StartCoroutine(DelaySetToFalse("isHarv"));
-    }
+
   }
   IEnumerator DelaySetToFalse(string set){
     yield return new WaitForSeconds(0.2f);
