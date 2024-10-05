@@ -7,6 +7,7 @@ public class InventoryController : MonoBehaviour
 {
     public Dictionary<string, Character> newInventoryDict = new Dictionary<string, Character>();
     public int selectedIndex = 1;
+    public AudioSource plantSound;
     public bool inHitbox = false;
     public float searchRadius = 10f; // Radius within which to search for GrowthController
 
@@ -105,6 +106,7 @@ public class InventoryController : MonoBehaviour
                     if (newChar.num >= 1)
                     {
                         Debug.Log("Planting");
+                        plantSound.Play();
 
                         newChar.num -= 1;
 

@@ -5,12 +5,14 @@ using UnityEngine;
 public class FarmingStuff : MonoBehaviour
 {
     public HungerController hungerController;
+    public AudioSource collectFoodSound;
   //  public GameObject thePitchfork;
    
     // Start is called before the first frame update
     private PlayerDamageController playerDamageController;
     void Start()
     {
+        collectFoodSound = GameObject.Find("PlayerCamera").GetComponent<AudioSource>();
         playerDamageController = GameObject.Find("FirstPersonController").GetComponent<PlayerDamageController>();
         if (hungerController == null)
         {
@@ -36,12 +38,15 @@ public class FarmingStuff : MonoBehaviour
 
         if (collision.gameObject.tag == "Food")
         {
+            collectFoodSound.Play();
             Destroy(collision.gameObject);
                 IncreaseHunger(10);
                 Debug.Log("Collision with Food!");
             
             
         }else if (collision.gameObject.tag == "FoodTom"){
+            collectFoodSound.pitch -=0.2f;
+            collectFoodSound.Play();
             Destroy(collision.gameObject);
                 playerDamageController.curPlayerHealth+=10;
         }
