@@ -9,6 +9,6 @@ public class PlayAgainController : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
     }
     public void PlayAgain(){
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
     }
 }
