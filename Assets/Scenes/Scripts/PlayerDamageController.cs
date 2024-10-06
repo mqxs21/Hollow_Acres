@@ -59,7 +59,7 @@ public class PlayerDamageController : MonoBehaviour
         transOut.SetActive(true);
         yield return new WaitForSeconds(1f);
         
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(2);
     }
     IEnumerator screenFlashDelay(){
         yield return new WaitForSeconds(0.1f);
