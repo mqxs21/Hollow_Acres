@@ -68,6 +68,7 @@ public class InventoryController : MonoBehaviour
 
     void Start()
     {
+        StatController.GameManager.StartNewGame();
         CreateNewCharacter("ID1", "PEPPER", 4);
         CreateNewCharacter("ID2", "TOMATO", 3);
     }
@@ -91,6 +92,7 @@ public class InventoryController : MonoBehaviour
     }
     void Update()
     {
+
         if (inHitbox)
         {
             
@@ -107,7 +109,7 @@ public class InventoryController : MonoBehaviour
                     {
                         Debug.Log("Planting");
                         plantSound.Play();
-
+                        StatController.GameManager.AddPlantedSeed(1);
                         newChar.num -= 1;
 
                         GrowthController closestGrowthController = FindClosestGrowthController();

@@ -8,8 +8,9 @@ public class EnemySpawnController : MonoBehaviour
     public DayController dayController;
     private bool lastNight;
     public GameObject enemy;
-    void Start()
+        void Start()
     {
+        
         dayController = GameObject.Find("DayNightManager").GetComponent<DayController>();
         lastNight = dayController.isNight;
     }
@@ -20,7 +21,8 @@ public class EnemySpawnController : MonoBehaviour
         {
             if (dayController.isNight)
             {
-                for (int i = 0; i < 4; i++)
+                int times = 5+(dayController.dayNumber-1);
+                for (int i = 0; i < times; i++)
                 {
                     int spawnNum = UnityEngine.Random.Range(1,16);
                     Instantiate(enemy,GameObject.Find("Spawn ("+spawnNum+")").transform.position,Quaternion.identity);

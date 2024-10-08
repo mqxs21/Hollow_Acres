@@ -890,7 +890,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 23, y: 129}
+  m_AnchoredPosition: {x: 23, y: 151}
   m_SizeDelta: {x: 782.1443, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &524382915
@@ -917,7 +917,8 @@ MonoBehaviour:
     enemies.
 
 
-    Also, remember to keep an eye on your health and hunger bars!'
+    Also, remember to keep an eye on your health and hunger bars!
+    (Peppers regenerates hunger, Tomatoes regenerates health)'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a6052c59ce263a946bbb1ce4be2b13e4, type: 2}
   m_sharedMaterial: {fileID: 1680733113673170222, guid: a6052c59ce263a946bbb1ce4be2b13e4,

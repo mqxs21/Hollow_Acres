@@ -101,6 +101,7 @@ public class EnemyAI : MonoBehaviour
 
     void Die() 
     {
+        StatController.GameManager.AddKilledEnemy(1);
         Instantiate(dropLoot,transform.position,Quaternion.identity);
         Destroy(this.gameObject);
     }

@@ -52,6 +52,7 @@ public class DayController : MonoBehaviour
 
     void Update()
     {
+        StatController.GameManager.IncrementDay(dayNumber);
         dayText.text = dayNumber.ToString();
         if (dayNightCycleWork)
         {

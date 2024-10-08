@@ -51469,10 +51469,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: LowPolySkeleton
       objectReference: {fileID: 0}
-    - target: {fileID: 514899169222688985, guid: 93da52e0ab602344e85654045703692b,
+    - target: {fileID: 33805806889518150, guid: 93da52e0ab602344e85654045703692b,
         type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2494759132715461911, guid: 93da52e0ab602344e85654045703692b,
         type: 3}
@@ -51528,16 +51528,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7400342298937504215, guid: 93da52e0ab602344e85654045703692b,
-        type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7456711294047471400, guid: 93da52e0ab602344e85654045703692b,
-        type: 3}
-      propertyPath: sightRange
-      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 7456711294047471400, guid: 93da52e0ab602344e85654045703692b,
         type: 3}
@@ -51750,6 +51740,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 559726298087344634, guid: 2e90afbf96d848e47b973e4e3435bd4e,
         type: 3}
+      propertyPath: mouseSensitivity
+      value: 0.26
+      objectReference: {fileID: 0}
+    - target: {fileID: 559726298087344634, guid: 2e90afbf96d848e47b973e4e3435bd4e,
+        type: 3}
       propertyPath: sprintFOVStepTime
       value: 4.2
       objectReference: {fileID: 0}
@@ -51926,7 +51921,7 @@ PrefabInstance:
     - target: {fileID: 2411725268013764653, guid: 2e90afbf96d848e47b973e4e3435bd4e,
         type: 3}
       propertyPath: hungerDecrement
-      value: 5
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 2581736777101561220, guid: 2e90afbf96d848e47b973e4e3435bd4e,
         type: 3}
